@@ -1,4 +1,3 @@
-/* eslint-disable no-dupe-keys */
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
@@ -17,7 +16,6 @@ export default new Router({
         {
           path: "index",
           name: "crawler",
-          component: "crawler",
           component: () => import("@/views/crawler/index.vue"),
           meta: {
             keepAlive: true
@@ -26,16 +24,24 @@ export default new Router({
         {
           path: "download",
           name: "download",
-          component: "download",
           component: () => import("@/views/download/index.vue"),
           meta: {
             keepAlive: true
-          }
+          },
+          children: [
+            {
+              path: "downloading",
+              name: "downloading",
+              component: () => import("@/views/download/downloading.vue"),
+              meta: {
+                keepAlive: true
+              }
+            }
+          ]
         },
         {
           path: "settings",
           name: "settings",
-          component: "settings",
           component: () => import("@/views/settings/index.vue"),
           meta: {
             keepAlive: true

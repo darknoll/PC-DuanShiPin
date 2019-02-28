@@ -58,10 +58,11 @@ export default {
       this.isActive = false;
     },
     handleEnter() {
-      this.$router.push({
-        name: "crawler",
-        params: { url: this.userData.url }
-      });
+      // this.$router.push({
+      //   name: "crawler",
+      //   params: { url: this.userData.url }
+      // });
+      this.$emit("sendUserInfo", this.userData.url);
     }
   }
 };
@@ -103,7 +104,11 @@ export default {
   color: rgba(0, 0, 0, 0.65);
 }
 .search-active {
-  background-color: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 2555, 255, 0.65);
+  background-color: transparent;
   cursor: pointer;
+  .user-desc span {
+    color: rgba(255, 2555, 255, 0.65);
+  }
 }
 </style>
