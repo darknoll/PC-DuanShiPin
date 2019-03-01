@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :visible.sync="dialogVisible"
-    width="90%"
+    width="400px"
     :before-close="handleClose"
     :modal-append-to-body="false"
     @open="handleOpen"
@@ -21,7 +21,12 @@
         @click="handleSearch"
       ></el-button>
     </el-input>
-    <div class="search">
+    <div
+      class="search"
+      v-loading="loading"
+      element-loading-background="transparent"
+      element-loading-text="加载中"
+    >
       <template v-for="(item, index) in searchList">
         <user-search-item
           :user-data="item"
@@ -35,10 +40,8 @@
 </template>
 
 <script>
-import { Message } from "element-ui";
-import Bus from '@/bus.js';
-import NProgress from "nprogress";
-import "nprogress/nprogress.css";
+import { Message, MessageBox } from "element-ui";
+import Bus from "@/bus.js";
 import UserSearchItem from "@/components/UserSearchItem";
 export default {
   components: {
@@ -48,7 +51,8 @@ export default {
     return {
       dialogVisible: false,
       searchKey: "",
-      searchList: []
+      searchList: [],
+      loading: false
     };
   },
   methods: {
@@ -67,11 +71,11 @@ export default {
     },
     handleUserInfo(url) {
       this.dialogVisible = false;
-      Bus.$emit('sendUserInfo', url);
-    //   this.$router.push({
-    //     name: "home",
-    //     params: { url: url }
-    //   });
+      Bus.$emit("sendUserInfo", url);
+      //   this.$router.push({
+      //     name: "home",
+      //     params: { url: url }
+      //   });
     },
     handleSearch() {
       if (this.searchKey.trim() === "") {
@@ -82,7 +86,8 @@ export default {
         });
         return;
       }
-      NProgress.start();
+      this.searchList = [];
+      this.loading = true;
       var spawn = require("child_process").spawn;
       var path = require("path");
       var pythonProcess = spawn("python", [
@@ -92,7 +97,14 @@ export default {
       ]);
       pythonProcess.stdout.on("data", data => {
         this.searchList = JSON.parse(data.toString());
-        NProgress.done();
+        if (this.searchList.length === 0) {
+          MessageBox({
+            showClose: true,
+            message: "未找到关键字对应的用户！",
+            type: "info"
+          });
+        }
+        this.loading = false;
       });
       pythonProcess.stderr.on("data", data => {
         Message({
@@ -100,7 +112,7 @@ export default {
           message: data.toString(),
           type: "error"
         });
-        NProgress.done();
+        this.loading = false;
       });
     }
   }
@@ -120,8 +132,9 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   margin-top: 20px;
-  overflow: scroll;
-  height: calc(100vh - 100px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(60vh);
 }
 .search-item {
   width: 360px;

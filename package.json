@@ -22,6 +22,7 @@
     "sync-request": "^6.0.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
+    "vue-video-player": "^5.0.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

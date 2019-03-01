@@ -2,11 +2,19 @@
   <div class="crawler">
     <div class="content">
       <template v-for="(item, index) in dataList">
-        <list-item :data-item="item" :key="index" class="data-item" @handlePlay="handlePlay"/>
+        <list-item
+          :data-item="item"
+          :key="index"
+          class="data-item"
+          @handlePlay="handlePlay"
+        />
       </template>
     </div>
     <div class="play-video">
-      <video-play-dialog ref="videoPlayDlg" key="videoPlayer"></video-play-dialog>
+      <video-play-dialog
+        ref="videoPlayDlg"
+        key="videoPlayer"
+      ></video-play-dialog>
     </div>
   </div>
 </template>
@@ -96,16 +104,17 @@ export default {
     }
   },
   mounted() {
-    this.url = '';
+    this.url = "";
     Bus.$on("sendUserInfo", url => {
       this.url = url;
     });
   },
   methods: {
-    handlePlay(playUrl) {
+    handlePlay(poster, playUrl) {
       this.playUrl = playUrl;
       this.$refs.videoPlayDlg.dialogVisible = true;
-      this.$refs.videoPlayDlg.playUrl = playUrl;
+      this.$refs.videoPlayDlg.playerOptions.poster = poster;
+      this.$refs.videoPlayDlg.playerOptions.sources[0].src = playUrl;
     }
   }
 };

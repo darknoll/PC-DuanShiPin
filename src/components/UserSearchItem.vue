@@ -1,5 +1,10 @@
 <template>
-  <div @mouseenter="mouseEnter" @mouseleave="mouseLeave" @click="handleEnter">
+  <div
+    @mouseenter="mouseEnter"
+    @mouseleave="mouseLeave"
+    @click="handleEnter"
+    class="user-search-item"
+  >
     <el-card class="user-search-card" :class="searchClass">
       <div class="user-top">
         <div class="user-icon">
@@ -69,7 +74,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 /deep/ .el-card {
-  border-radius: 0;
+  border-color: transparent;
+  border-radius: 10px;
+  background-color: rgba(180, 180, 180, 0.6);
 }
 .user-search-card {
   width: 100%;

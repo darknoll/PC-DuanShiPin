@@ -82,7 +82,7 @@ export default {
       this.showPlayer = false;
     },
     handlePlay() {
-      this.$emit("handlePlay", this.dataItem.playUrl);
+      this.$emit("handlePlay", this.dataItem.poster, this.dataItem.playUrl);
     },
     handleDownload() {
       this.downloadIcon = "el-icon-loading";

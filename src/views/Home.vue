@@ -25,7 +25,12 @@
           <template slot-scope="{ item }">
             <div class="name">{{ item.value }}</div>
           </template>
-          <el-select v-model="select" slot="prepend" placeholder="请选择" class="platform-select">
+          <el-select
+            v-model="select"
+            slot="prepend"
+            placeholder="请选择"
+            class="platform-select"
+          >
             <el-option label="抖音" value="1"></el-option>
             <el-option label="快手" value="2"></el-option>
           </el-select>
@@ -33,7 +38,7 @@
       </div>
     </div>
     <keep-alive v-if="$route.meta.keepAlive">
-      <router-view class="changing"/>
+      <router-view class="changing" />
     </keep-alive>
     <search-dialog ref="searchDlg"></search-dialog>
   </div>
