@@ -14,6 +14,7 @@
         <el-menu-item index="/download">下载</el-menu-item>
         <el-menu-item index="/settings">设置</el-menu-item>
       </el-menu>
+      <div class="middle" style="-webkit-app-region: drag"></div>
       <div class="search">
         <el-input
           v-model="searchKey"
@@ -86,8 +87,13 @@ export default {
 .main-menu {
   width: 150px;
 }
+.middle {
+  width: 1px;
+  flex: 1;
+}
 .el-menu-main {
-  flex: auto;
+  flex: none;
+  height: 59px;
 }
 .input-btn {
   font-family: "微软雅黑";
@@ -105,5 +111,8 @@ export default {
 }
 .search /deep/ .el-select {
   background-color: transparent;
+}
+.changing {
+  background-image: url("../assets/main-back.jpg");
 }
 </style>

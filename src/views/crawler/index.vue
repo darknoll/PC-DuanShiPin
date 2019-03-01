@@ -73,6 +73,7 @@ export default {
             return;
           }
           this.userID = parts[parts.length - 1];
+          this.dataList = [];
           NProgress.start();
           const spawn = require("child_process").spawn;
           const path = require("path");
@@ -122,21 +123,17 @@ export default {
 
 <style lang="scss" scoped>
 .crawler {
-  margin-top: 20px;
+  padding-top: 20px;
+  border-width: 0;
 }
 .box-card {
   position: relative;
-}
-.masker {
-  position: absolute;
   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
+}
+/deep/ .el-card {
+  border-width: 0;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 5px;
 }
 .content {
   display: flex;
@@ -144,12 +141,12 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   overflow: scroll;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 100px);
   padding: 0;
 }
 .data-item {
   width: 250px;
   height: 210px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 </style>
