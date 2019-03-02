@@ -36,7 +36,7 @@
 export default {
   data() {
     return {
-      title: "从零基础认识Linux世界",
+      title: "短视频001",
       size: 93.84,
       downloaded: 74.55,
       timeLeft: -1,

@@ -75,6 +75,7 @@ export default {
   background-color: transparent;
   font-family: "微软雅黑";
   color: rgba(256, 256, 256, 0.7);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 .banner {
   font-family: "微软雅黑";
@@ -105,6 +106,7 @@ export default {
 /deep/.el-select .el-input {
   width: 75px;
 }
+
 .search {
   flex: none;
   margin-right: 10px;

@@ -48,7 +48,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  padding: 5px 10px;
+  padding: 10px;
+  margin: 0 10px 0 0;
 }
 .downloading-progress {
   flex: 1;
@@ -56,6 +57,8 @@ export default {
 }
 .downloading-btns {
   margin: 0 0 0 10px;
+}
+/deep/ .el-button {
   font-family: "微软雅黑";
 }
 </style>

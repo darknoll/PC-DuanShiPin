@@ -27,7 +27,7 @@
 export default {
   data() {
     return {
-      downloadingNum: 10,
+      downloadingNum: 1,
       downloadNum: 0
     };
   },

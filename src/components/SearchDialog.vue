@@ -1,11 +1,12 @@
 <template>
   <el-dialog
+    :lock-scroll="false"
     :visible.sync="dialogVisible"
     width="400px"
     :before-close="handleClose"
     :modal-append-to-body="false"
     @open="handleOpen"
-    class="search-dialog"
+    :custom-class="searchDialog"
   >
     <el-input
       placeholder="请输入搜索内容"
@@ -123,7 +124,7 @@ export default {
 /deep/ .el-dialog {
   background-image: url("../assets/search-back.jpg");
 }
-.search-dialog {
+.searchDialog {
   border-radius: 20px;
 }
 .search {

@@ -2,7 +2,7 @@
   <div class="downloading">
     <downloading-top />
     <div class="items">
-      <template v-for="(item, index) in 30">
+      <template v-for="(item, index) in 1">
         <downloading-item :key="index" />
       </template>
     </div>

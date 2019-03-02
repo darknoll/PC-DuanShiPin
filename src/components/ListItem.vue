@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div style="padding: 14px;">
+      <div class="item-content">
         <el-tooltip :content="dataItem.caption" placement="top">
           <span>{{ cutString }}</span>
         </el-tooltip>
@@ -103,6 +103,7 @@ export default {
 }
 /deep/ .el-card__body {
   height: 230px;
+  color: rgba(0, 0, 0, 0.75);
 }
 .list-item {
   width: 100%;
@@ -161,5 +162,8 @@ export default {
 
 .clearfix:after {
   clear: both;
+}
+.item-content {
+  padding: 14px;
 }
 </style>
