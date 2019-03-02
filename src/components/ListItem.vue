@@ -101,6 +101,9 @@ export default {
 /deep/ .el-card {
   border-radius: 5px;
 }
+/deep/ .el-card__body {
+  height: 230px;
+}
 .list-item {
   width: 100%;
   height: 100%;

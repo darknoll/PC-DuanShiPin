@@ -16,7 +16,7 @@ export default new Router({
         {
           path: "index",
           name: "crawler",
-          component: () => import("@/views/crawler/index.vue"),
+          component: () => import("@/views/crawler/Index.vue"),
           meta: {
             keepAlive: true
           }
@@ -24,7 +24,7 @@ export default new Router({
         {
           path: "download",
           name: "download",
-          component: () => import("@/views/download/index.vue"),
+          component: () => import("@/views/download/Index.vue"),
           meta: {
             keepAlive: true
           },
@@ -32,7 +32,15 @@ export default new Router({
             {
               path: "downloading",
               name: "downloading",
-              component: () => import("@/views/download/downloading.vue"),
+              component: () => import("@/views/download/Downloading.vue"),
+              meta: {
+                keepAlive: true
+              }
+            },
+            {
+              path: "downloaded",
+              name: "downloaded",
+              component: () => import("@/views/download/Downloaded.vue"),
               meta: {
                 keepAlive: true
               }
@@ -42,7 +50,7 @@ export default new Router({
         {
           path: "settings",
           name: "settings",
-          component: () => import("@/views/settings/index.vue"),
+          component: () => import("@/views/settings/Index.vue"),
           meta: {
             keepAlive: true
           }
@@ -52,8 +60,7 @@ export default new Router({
     {
       path: "/search",
       name: "search",
-      component: "search",
-      component: () => import("@/views/search/index.vue"),
+      component: () => import("@/views/search/Index.vue"),
       meta: {
         keepAlive: true
       }

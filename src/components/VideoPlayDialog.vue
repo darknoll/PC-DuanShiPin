@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-dialog
+      :lock-scroll="false"
       :visible.sync="dialogVisible"
-      width="500px"
       :before-close="handleClose"
       fullscreen
       class="video-dialog"
@@ -13,18 +13,6 @@
           ref="videoPlayer"
           :options="playerOptions"
           :playsinline="true"
-          customEventName="customstatechangedeventname"
-          @play="onPlayerPlay($event)"
-          @pause="onPlayerPause($event)"
-          @ended="onPlayerEnded($event)"
-          @waiting="onPlayerWaiting($event)"
-          @playing="onPlayerPlaying($event)"
-          @loadeddata="onPlayerLoadeddata($event)"
-          @timeupdate="onPlayerTimeupdate($event)"
-          @canplay="onPlayerCanplay($event)"
-          @canplaythrough="onPlayerCanplaythrough($event)"
-          @statechanged="playerStateChanged($event)"
-          @ready="playerReadied"
         >
         </video-player>
       </div>
@@ -40,11 +28,10 @@ export default {
       playUrl: "",
       playerOptions: {
         // videojs options
-        width: 480,
+        height: 900,
         autoplay: true,
         loop: true,
         language: "zh-CN",
-        fluid: false,
         playbackRates: [0.5, 1.0, 1.5, 2.0],
         sources: [
           {
@@ -66,7 +53,6 @@ export default {
 
 <style lang="scss" scoped>
 .video-player {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

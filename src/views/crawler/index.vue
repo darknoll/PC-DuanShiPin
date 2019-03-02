@@ -123,8 +123,8 @@ export default {
 
 <style lang="scss" scoped>
 .crawler {
-  padding-top: 20px;
   border-width: 0;
+  padding-top: 20px;
 }
 .box-card {
   position: relative;
@@ -140,8 +140,6 @@ export default {
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  overflow: scroll;
-  height: calc(100vh - 100px);
   padding: 0;
 }
 .data-item {

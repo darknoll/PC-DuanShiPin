@@ -114,5 +114,7 @@ export default {
 }
 .changing {
   background-image: url("../assets/main-back.jpg");
+  overflow: scroll;
+  height: calc(100vh - 100px);
 }
 </style>

@@ -2,18 +2,19 @@
   <div class="download">
     <div class="navbar">
       <el-menu
+        :router="true"
         default-active="2"
         class="el-menu-vertical"
         @open="handleOpen"
         @close="handleClose"
       >
-        <el-menu-item index="2">
+        <el-menu-item index="/download/downloading">
           <i class="el-icon-download"></i>
-          <span slot="title">正在下载{{ downloadingNum }}</span>
+          <span slot="title">{{ downloadingText }}</span>
         </el-menu-item>
-        <el-menu-item index="3">
+        <el-menu-item index="/download/downloaded">
           <i class="el-icon-check"></i>
-          <span slot="title">完成下载{{ downloadNum }}</span>
+          <span slot="title">{{ downloadText }}</span>
         </el-menu-item>
       </el-menu>
     </div>
@@ -26,15 +27,33 @@
 export default {
   data() {
     return {
-      downloadingNum: 0,
+      downloadingNum: 10,
       downloadNum: 0
     };
+  },
+  computed: {
+    downloadingText() {
+      let text = "正在下载";
+      if (this.downloadingNum != 0) {
+        text += `(${this.downloadingNum})`;
+      }
+      return text;
+    },
+    downloadText() {
+      let text = "完成下载";
+      if (this.downloadNum != 0) {
+        text += `(${this.downloadNum})`;
+      }
+      return text;
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .download {
+  overflow: hidden;
+  height: calc(100vh - 50px);
   display: flex;
 }
 .navbar {
