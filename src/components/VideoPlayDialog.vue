@@ -11,12 +11,12 @@
       fullscreen
       class="video-dialog"
     >
-      <el-button
-        icon="el-icon-arrow-left"
-        circle
-        class="play-btn"
-        @click="handlePrev"
-      ></el-button>
+      <el-button circle class="play-btn" @click="handlePrev">
+        <img
+          src="@/assets/png/previous.png"
+          style="width: 48px; height: 48px;"
+        />
+      </el-button>
       <div class="video-player">
         <video-player
           class="video-player-box"
@@ -26,12 +26,9 @@
         >
         </video-player>
       </div>
-      <el-button
-        icon="el-icon-arrow-right"
-        circle
-        class="play-btn"
-        @click="handleNext"
-      ></el-button>
+      <el-button circle class="play-btn" @click="handleNext">
+        <img src="@/assets/png/next.png" style="width: 48px; height: 48px;" />
+      </el-button>
     </el-dialog>
   </div>
 </template>
