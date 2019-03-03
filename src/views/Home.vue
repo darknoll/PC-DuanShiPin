@@ -11,7 +11,16 @@
         active-text-color="#ffd04b"
       >
         <el-menu-item index="/">主页</el-menu-item>
-        <el-menu-item index="/download">下载</el-menu-item>
+        <el-menu-item index="/download">
+          <template v-if="downloadingNum !== 0">
+            <el-badge :value="downloadingNum">
+              <span>下载</span>
+            </el-badge>
+          </template>
+          <template v-else>
+            <span>下载</span>
+          </template>
+        </el-menu-item>
         <el-menu-item index="/settings">设置</el-menu-item>
       </el-menu>
       <div class="middle" style="-webkit-app-region: drag"></div>
@@ -57,7 +66,8 @@ export default {
       activeIndex: "/",
       searchKey: "",
       select: "2",
-      searchSuggets: []
+      searchSuggets: [],
+      downloadingNum: 1
     };
   },
   methods: {
@@ -118,5 +128,8 @@ export default {
   background-image: url("../assets/main-back.jpg");
   overflow: scroll;
   height: calc(100vh - 100px);
+}
+/deep/ .el-badge__content {
+  top: 15px !important;
 }
 </style>

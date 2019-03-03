@@ -11,13 +11,6 @@
         <div class="masker" v-if="showPlayer">
           <img src="@/assets/player.svg" />
         </div>
-        <div class="mark-down" v-if="isDownload">
-          <el-button
-            :type="downloadType"
-            :icon="downloadIcon"
-            circle
-          ></el-button>
-        </div>
       </div>
 
       <div class="item-content">
@@ -59,10 +52,7 @@ export default {
   },
   data() {
     return {
-      showPlayer: false,
-      isDownload: false,
-      downloadType: "",
-      downloadIcon: ""
+      showPlayer: false
     };
   },
   computed: {
@@ -84,15 +74,7 @@ export default {
     handlePlay() {
       this.$emit("handlePlay", this.dataItem.poster, this.dataItem.playUrl);
     },
-    handleDownload() {
-      this.downloadIcon = "el-icon-loading";
-      this.downloadType = "info";
-      this.isDownload = true;
-      setTimeout(() => {
-        this.downloadIcon = "el-icon-check";
-        this.downloadType = "success";
-      }, 3000);
-    }
+    handleDownload() {}
   }
 };
 </script>
@@ -132,11 +114,6 @@ export default {
 }
 .masker {
   position: absolute;
-}
-.mark-down {
-  position: absolute;
-  right: 5px;
-  top: 5px;
 }
 .image {
   width: 50%;

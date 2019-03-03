@@ -19,6 +19,7 @@
       <el-button
         slot="append"
         icon="el-icon-search"
+        :loading="isBtnLoading"
         @click="handleSearch"
       ></el-button>
     </el-input>
@@ -53,7 +54,8 @@ export default {
       dialogVisible: false,
       searchKey: "",
       searchList: [],
-      loading: false
+      loading: false,
+      isBtnLoading: false
     };
   },
   methods: {
@@ -79,12 +81,14 @@ export default {
       //   });
     },
     handleSearch() {
+      this.isBtnLoading = true;
       if (this.searchKey.trim() === "") {
         Message({
           showClose: true,
           message: "未输入！",
           type: "error"
         });
+        this.isBtnLoading = false;
         return;
       }
       this.searchList = [];
@@ -106,6 +110,7 @@ export default {
           });
         }
         this.loading = false;
+        this.isBtnLoading = false;
       });
       pythonProcess.stderr.on("data", data => {
         Message({
@@ -114,6 +119,7 @@ export default {
           type: "error"
         });
         this.loading = false;
+        this.isBtnLoading = false;
       });
     }
   }

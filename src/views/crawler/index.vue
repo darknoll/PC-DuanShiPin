@@ -60,6 +60,7 @@ export default {
           pythonProcess.stdout.on("data", data => {
             const json = JSON.parse(data.toString());
             this.dataList = json["data"]["videoFeeds"]["list"];
+            this.$store.dispatch("setDataList", this.dataList);
             NProgress.done();
           });
         } else {
@@ -74,6 +75,7 @@ export default {
           }
           this.userID = parts[parts.length - 1];
           this.dataList = [];
+          this.$store.dispatch("setDataList", []);
           NProgress.start();
           const spawn = require("child_process").spawn;
           const path = require("path");
@@ -84,6 +86,7 @@ export default {
           pythonProcess.stdout.on("data", data => {
             const json = JSON.parse(data.toString());
             this.dataList = json["data"]["getProfileFeeds"]["list"];
+            this.$store.dispatch("setDataList", this.dataList);
             Message({
               showClose: true,
               message: "获取成功",
@@ -111,9 +114,18 @@ export default {
     });
   },
   methods: {
+    findIndexInDataList(playUrl) {
+      for (let i = 0; i < this.dataList.length; i++) {
+        if (this.dataList[i].playUrl === playUrl) {
+          return i;
+        }
+      }
+      return -1;
+    },
     handlePlay(poster, playUrl) {
       this.playUrl = playUrl;
       this.$refs.videoPlayDlg.dialogVisible = true;
+      this.$refs.videoPlayDlg.currID = this.findIndexInDataList(playUrl);
       this.$refs.videoPlayDlg.playerOptions.poster = poster;
       this.$refs.videoPlayDlg.playerOptions.sources[0].src = playUrl;
     }

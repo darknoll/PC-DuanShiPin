@@ -3,23 +3,31 @@
     <div class="navbar">
       <el-menu
         :router="true"
-        default-active="2"
+        default-active="/download/downloading"
         class="el-menu-vertical"
         @open="handleOpen"
         @close="handleClose"
       >
-        <el-menu-item index="/download/downloading">
+        <el-menu-item
+          index="/download/downloading"
+          @click="handleMenuChange('/download/downloading')"
+        >
           <i class="el-icon-download"></i>
           <span slot="title">{{ downloadingText }}</span>
         </el-menu-item>
-        <el-menu-item index="/download/downloaded">
+        <el-menu-item
+          index="/download/downloaded"
+          @click="handleMenuChange('/download/downloaded')"
+        >
           <i class="el-icon-check"></i>
           <span slot="title">{{ downloadText }}</span>
         </el-menu-item>
       </el-menu>
     </div>
     <div class="main-content">
-      <router-view />
+      <keep-alive v-if="$route.meta.keepAlive">
+        <router-view />
+      </keep-alive>
     </div>
   </div>
 </template>
@@ -30,6 +38,14 @@ export default {
       downloadingNum: 1,
       downloadNum: 0
     };
+  },
+  activated() {
+    const url = this.$store.state.downloadUrl;
+    if (url === "") {
+      this.$router.push("/download/downloading");
+    } else {
+      this.$router.push(url);
+    }
   },
   computed: {
     downloadingText() {
@@ -45,6 +61,11 @@ export default {
         text += `(${this.downloadNum})`;
       }
       return text;
+    }
+  },
+  methods: {
+    handleMenuChange(url) {
+      this.$store.dispatch("setDownloadUrl", url);
     }
   }
 };
