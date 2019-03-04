@@ -16,6 +16,15 @@
         key="videoPlayer"
       ></video-play-dialog>
     </div>
+    <div class="tools">
+      <el-dropdown @command="handleCommand">
+        <el-button icon="el-icon-more" circle></el-button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="downloadAll">下载全部</el-dropdown-item>
+          <el-dropdown-item command="collectUser">收藏该用户</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
   </div>
 </template>
 
@@ -128,6 +137,9 @@ export default {
       this.$refs.videoPlayDlg.currID = this.findIndexInDataList(playUrl);
       this.$refs.videoPlayDlg.playerOptions.poster = poster;
       this.$refs.videoPlayDlg.playerOptions.sources[0].src = playUrl;
+    },
+    handleCommand(command) {
+      alert("click on item " + command);
     }
   }
 };
@@ -158,5 +170,10 @@ export default {
   width: 250px;
   height: 210px;
   margin-bottom: 40px;
+}
+.tools {
+  position: absolute;
+  right: 10px;
+  top: 50%;
 }
 </style>
