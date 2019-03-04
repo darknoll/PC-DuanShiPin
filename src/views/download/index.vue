@@ -72,6 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/vars.scss";
 .download {
   overflow: hidden;
   height: calc(100vh - 50px);
@@ -79,7 +80,7 @@ export default {
 }
 .navbar {
   flex: none;
-  width: 160px;
+  width: $downloadNavbarWidth;
   height: calc(100vh - 60px);
 }
 .el-menu-vertical {

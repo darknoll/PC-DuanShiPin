@@ -1,7 +1,6 @@
 "use strict";
 
 import { app, protocol, BrowserWindow } from "electron";
-import { ipcMain } from "electron";
 import {
   createProtocol,
   installVueDevtools
@@ -52,47 +51,6 @@ app.on("activate", () => {
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
     createWindow();
-  }
-});
-
-// Event handler for asynchronous incoming messages
-ipcMain.on("asynchronous-message", (event, arg) => {
-  console.log(arg);
-
-  // Event emitter for sending asynchronous messages
-  event.sender.send("asynchronous-reply", "async pong");
-});
-
-// Event handler for synchronous incoming messages
-ipcMain.on("synchronous-message", (event, arg) => {
-  console.log(arg);
-
-  // Synchronous event emmision
-  event.returnValue = "sync pong";
-});
-
-ipcMain.on("openFile", (event, path) => {
-  const { dialog } = require("electron");
-  const fs = require("fs");
-  dialog.showOpenDialog(function(fileNames) {
-    // fileNames is an array that contains all the selected
-    if (fileNames === undefined) {
-      console.log("No file selected");
-    } else {
-      readFile(fileNames[0]);
-    }
-  });
-
-  function readFile(filepath) {
-    fs.readFile(filepath, "utf-8", (err, data) => {
-      if (err) {
-        alert("An error ocurred reading the file :" + err.message);
-        return;
-      }
-
-      // handle the file content
-      event.sender.send("fileData", data);
-    });
   }
 });
 

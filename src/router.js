@@ -53,7 +53,25 @@ export default new Router({
           component: () => import("@/views/settings/Index.vue"),
           meta: {
             keepAlive: true
-          }
+          },
+          children: [
+            {
+              path: "basic",
+              name: "basic",
+              component: () => import("@/views/settings/Basic.vue"),
+              meta: {
+                keepAlive: true
+              }
+            },
+            {
+              path: "transfer",
+              name: "transfer",
+              component: () => import("@/views/settings/Transfer.vue"),
+              meta: {
+                keepAlive: true
+              }
+            }
+          ]
         }
       ]
     },
